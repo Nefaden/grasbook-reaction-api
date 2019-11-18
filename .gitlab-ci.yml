@@ -1,0 +1,46 @@
+image: node:12.12.0
+
+stages:
+  - build
+  - test
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: build
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+  
+build-image:
+  image: docker:19.03.1
+  stage: build
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ''
+  services:
+    - docker:19.03.1-dind
+  script:
+    - docker build -t api-reaction:1.0.0 .
+
+jest:
+  stage: test
+  script:
+    - npm run test
+
+eslint:
+  stage: test
+  script:
+    - npm run eslint
+
+deploy:
+  stage: deploy
+  only: 
+    - master
+  script:
+    - echo "deploy done"
