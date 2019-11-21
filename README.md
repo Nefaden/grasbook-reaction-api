@@ -23,18 +23,21 @@
 
 Each environment variable have a meaning :
 
-| **NAME**    | **DESCRIPTION**                        | **TYPE**                             |
-| ----------- | -------------------------------------- | ------------------------------------ |
-| PORT        | The port of your local server          | INT                                  |
-| HOST        | The host of your local server          | STRING                               |
-| SRV_PORT    | The port of your dev server            | INT                                  |
-| SRV_HOST    | The port of your dev server            | STRING                               |
-| DB_PORT     | The port of your database server       | INT                                  |
-| DB_HOST     | The host of your database server       | STRING                               |
-| DB_USER     | The admin user of your database        | STRING                               |
-| DB_PASSWORD | The admin's password                   | STRING                               |
-| DB_NAME     | Your database's name on your server    | STRING                               |
-| DB_POOL_MAX | The maximum pool of your database      | INT                                  |
+| **NAME**        | **DESCRIPTION**                        | **TYPE**  |
+| --------------- | -------------------------------------- | ----------|
+| PORT            | The port of your local server          | INT       |
+| HOST            | The host of your local server          | STRING    |
+| SRV_PORT        | The port of your dev server            | INT       |
+| SRV_HOST        | The port of your dev server            | STRING    |
+| DB_PORT         | The port of your database server       | INT       |
+| DB_HOST         | The host of your database server       | STRING    |
+| DB_USER         | The admin user of your database        | STRING    |
+| DB_PASSWORD     | The admin's password                   | STRING    |
+| DB_NAME         | Your database's name on your server    | STRING    |
+| DB_POOL_MAX     | The maximum pool of your database      | INT       |
+| REQUESTED_RANGE | The size of the requested range for 416| INT       |
+| MAX_RANGE       | Max range available for 416 response   | INT       |
+| CONTENT_SIZE    | The size of the requested content      | INT       |
 
 **START AND TESTS**
 
