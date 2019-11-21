@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize';
+const Sequelize = require('sequelize');
 
 const sequelizeInstance = new Sequelize(
   process.env.DB_NAME,
@@ -18,4 +18,4 @@ const sequelizeInstance = new Sequelize(
   }
 );
 
-export default sequelizeInstance;
+module.exports = sequelizeInstance;
