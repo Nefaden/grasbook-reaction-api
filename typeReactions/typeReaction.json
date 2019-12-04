@@ -1,7 +1,5 @@
-[
-    {
-        "uuid": "25d8abbf-8d2f-49f8-9ebc-0f7d397efca9",
-        "iconUrl": "http://localhost/typeReactions/like",
-        "name": "like"
-    }
-]
+{
+    "uuid": "25d8abbf-8d2f-49f8-9ebc-0f7d397efca9",
+    "iconUrl": "http://localhost/typeReactions/like",
+    "name": "like"
+}
