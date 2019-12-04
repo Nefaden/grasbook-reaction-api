@@ -1,21 +1,19 @@
 image: node:12.12.0
 
 stages:
+  - build-dependencies
   - build
   - test
   - deploy
 
+install_dependencies:
+  stage: build-dependencies
+  script:
+    - npm install
+      
 cache:
   paths:
     - node_modules/
-
-install_dependencies:
-  stage: build
-  script:
-    - npm install
-  artifacts:
-    paths:
-      - node_modules/
   
 build-image:
   image: docker:19.03.1
@@ -27,6 +25,9 @@ build-image:
     - docker:19.03.1-dind
   script:
     - docker build -t api-reaction:1.0.0 .
+  artifacts:
+    paths:
+      - dockerfile
 
 jest:
   stage: test
