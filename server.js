@@ -1,12 +1,23 @@
+/* eslint-disable no-console */
 require('dotenv').config();
 const Hapi = require('@hapi/hapi');
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const Pack = require('./package');
+const sequelize = require('./database/connectDatabase');
 const TypeReactionRoute = require('./typeReactions');
+const ReactionRoute = require('./reactions');
 
 const init = async () => {
+  sequelize
+    .authenticate()
+    .then(() => {
+      console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+      console.error('Unable to connect to the database:', err);
+    });
   const server = Hapi.server({
     port: process.env.PORT,
     host: process.env.HOST,
@@ -19,7 +30,7 @@ const init = async () => {
 
   const swaggerOptions = {
     info: {
-      title: 'User API Documentation',
+      title: 'Reaction API Documentation',
       version: Pack.version
     }
   };
@@ -43,13 +54,13 @@ const init = async () => {
 
   server.route(TypeReactionRoute);
 
+  server.route(ReactionRoute);
+
   await server.start();
-  /* eslint no-console: ["error", { allow: ["log"] }] */
   console.log('Server running on %s', server.info.uri);
 };
 
 process.on('unhandledRejection', err => {
-  /* eslint no-console: ["error", { allow: ["log"] }] */
   console.log(err);
   process.exit(1);
 });

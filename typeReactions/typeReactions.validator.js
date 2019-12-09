@@ -1,27 +1,33 @@
 const Joi = require('@hapi/joi');
 
 const typeReactionSchema = Joi.object({
+  iconBlob: Joi.binary().encoding('base64'),
   iconUrl: Joi.string()
-    .min(1)
-    .max(100)
-    .required(),
+    .uri({ scheme: ['http', 'https'] })
+    .description("Type Reaction's icon url"),
+
+  iconType: Joi.string().valid('jpg', 'jpeg', 'png'),
 
   name: Joi.string()
     .alphanum()
     .min(1)
     .max(30)
+    .description("Type Reaction's name")
     .required()
 });
 
 const typeReactionUpdateSchema = Joi.object({
   iconUrl: Joi.string()
-    .min(1)
-    .max(100),
+    .uri({ scheme: ['http', 'https'] })
+    .description("Type Reaction's icon url"),
+
+  iconType: Joi.string().valid('jpg', 'jpeg', 'png'),
 
   name: Joi.string()
     .alphanum()
     .min(1)
     .max(30)
+    .description("Type Reaction's name")
 });
 
 const queryFindAllParamSchema = {
