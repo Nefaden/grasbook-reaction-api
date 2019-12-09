@@ -1,17 +1,24 @@
 /* eslint-disable no-console */
-const _ = require('lodash');
+const lodash = require('lodash');
+const OperatorFunctions = require('../functions/functions.operator');
 const TypeReaction = require('./typeReactions.model');
 const { ErrorFunctions } = require('../functions');
 
 const findAll = options => {
   const where = { ...options.query };
   const args = { ...options };
-  if (_.isNull(args.query.sortColumn) || _.isUndefined(args.query.sortColumn)) {
+  if (
+    lodash.isNull(args.query.sortColumn) ||
+    lodash.isUndefined(args.query.sortColumn)
+  ) {
     args.query.sortColumn = 'name';
     args.query.sort = 'ASC';
   }
 
-  if (!_.isUndefined(args.query.sortColumn) || !_.isUndefined(args.query.sort))
+  if (
+    !lodash.isUndefined(args.query.sortColumn) ||
+    !lodash.isUndefined(args.query.sort)
+  )
     args.query.order = [[args.query.sortColumn, args.query.sort]];
 
   delete where.limit;
@@ -40,8 +47,11 @@ const findByUUID = options => {
     return result;
   });
 };
-const create = (values, options) => {
-  return TypeReaction.create(values, options).catch(err => {
+
+const create = async (values, options) => {
+  const obj = { ...values };
+  obj.iconUrl = await OperatorFunctions.UploadBinaryToUri(values);
+  return TypeReaction.create(obj, options).catch(err => {
     throw ErrorFunctions.error400(err);
   });
 };

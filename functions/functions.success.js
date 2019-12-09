@@ -1,8 +1,8 @@
-const _ = require('lodash');
+const lodash = require('lodash');
 
 const successCodeChange = (h, data) => {
   const dataValue = { ...data };
-  if (!_.isUndefined(data.code)) {
+  if (!lodash.isUndefined(data.code)) {
     const { code } = dataValue;
     delete dataValue.code;
 
@@ -11,11 +11,11 @@ const successCodeChange = (h, data) => {
 
   if (h.request.method === 'post') {
     // Warning DANGER ZONE
-    if (_.isUndefined(data.get('uuid'))) {
+    if (lodash.isUndefined(data.get('uuid'))) {
       let locationString = '';
       let numberControl = 0;
-      _.forOwn(data.get(), (val, key) => {
-        if (_.endsWith(key, 'Uuid')) {
+      lodash.forOwn(data.get(), (val, key) => {
+        if (lodash.endsWith(key, 'Uuid')) {
           numberControl += 1;
           if (numberControl <= 2) {
             const keyName = key.substring(0, key.search('Uuid'));

@@ -1,7 +1,8 @@
-const _ = require('lodash');
+/* eslint-disable no-console */
+const lodash = require('lodash');
 
 const error404 = result => {
-  if (!result || (_.isArray(result) && result[0] === 0) || result === 0) {
+  if (!result || (lodash.isArray(result) && result[0] === 0) || result === 0) {
     const error = new Error('No match found');
     error.code = 404;
     error.error = 'No Match Found';
@@ -48,7 +49,8 @@ const error400 = err => {
 };
 
 const errorCodeChange = (h, err) => {
-  if (!_.isUndefined(err.code)) {
+  console.log(err);
+  if (!lodash.isUndefined(err.code)) {
     const error = {
       statusCode: err.statusCode,
       error: err.error,
