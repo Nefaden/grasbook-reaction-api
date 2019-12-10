@@ -37,7 +37,7 @@ responses.resp404 = response404;
 const ReactionRoute = [
   {
     method: 'GET',
-    path: '/reactions/',
+    path: '/reactions',
     handler(request, h) {
       return Reaction.findAll(request)
         .then(result => SuccessFunctions.successCodeChange(h, result))
@@ -65,7 +65,7 @@ const ReactionRoute = [
   },
   {
     method: 'POST',
-    path: '/reactions/',
+    path: '/reactions',
     handler(request, h) {
       return Reaction.create(request.payload)
         .then(result => SuccessFunctions.successCodeChange(h, result))

@@ -27,8 +27,6 @@ Each environment variable have a meaning :
 | --------------- | -------------------------------------- | ----------|
 | PORT            | The port of your local server          | INT       |
 | HOST            | The host of your local server          | STRING    |
-| SRV_PORT        | The port of your dev server            | INT       |
-| SRV_HOST        | The port of your dev server            | STRING    |
 | DB_PORT         | The port of your database server       | INT       |
 | DB_HOST         | The host of your database server       | STRING    |
 | DB_USER         | The admin user of your database        | STRING    |
