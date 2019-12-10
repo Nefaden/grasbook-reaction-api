@@ -88,7 +88,7 @@ const TypeReactionRoute = [
   },
   {
     method: 'POST',
-    path: '/typeReactions/',
+    path: '/typeReactions',
     handler(request, h) {
       return TypeReaction.create(request.payload)
         .then(result => SuccessFunctions.successCodeChange(h, result))
@@ -97,6 +97,12 @@ const TypeReactionRoute = [
     options: {
       validate: {
         payload: typeReactionSchema
+      },
+      auth: {
+        strategies: ['keycloak-jwt'],
+        access: {
+          scope: ['grasbook-front:administrateur-reaction']
+        }
       },
       plugins: {
         'hapi-swagger': {
@@ -124,6 +130,12 @@ const TypeReactionRoute = [
       validate: {
         params: queryFindByUUIDParamSchema
       },
+      auth: {
+        strategies: ['keycloak-jwt'],
+        access: {
+          scope: ['grasbook-front:administrateur-reaction']
+        }
+      },
       plugins: {
         'hapi-swagger': {
           responses: {
@@ -150,6 +162,12 @@ const TypeReactionRoute = [
       validate: {
         params: queryFindByUUIDParamSchema,
         payload: typeReactionUpdateSchema
+      },
+      auth: {
+        strategies: ['keycloak-jwt'],
+        access: {
+          scope: ['grasbook-front:administrateur-reaction']
+        }
       },
       plugins: {
         'hapi-swagger': {

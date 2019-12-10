@@ -46,15 +46,18 @@ const UploadBinaryToUri = async values => {
     region,
     endpoint
   });
-
-  const params = {
-    Bucket: `${bucketName}`,
-    Key: `reactionApi/${values.name}.${Date.now()}.${values.pictureType}`,
-    Body: values.iconBlob,
-    ACL: 'public-read'
-  };
-
   if (!lodash.isNull(values.iconBlob) && !lodash.isUndefined(values.iconBlob)) {
+    const iconBlob = Buffer.from(
+      values.pictureBlob.replace(/^data:image\/\w+;base64,/, ''),
+      'base64'
+    );
+    const params = {
+      Bucket: `${bucketName}`,
+      Key: `reactionApi/${values.name}.${Date.now()}.${values.pictureType}`,
+      Body: iconBlob,
+      ACL: 'public-read'
+    };
+
     const string = endpoint.substring(indexOfEnd(endpoint, 'https://'));
     client.upload(params, err => {
       if (err) {

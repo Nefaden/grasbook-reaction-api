@@ -4,10 +4,13 @@ const Hapi = require('@hapi/hapi');
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
+const authKeycloak = require('hapi-auth-keycloak');
 const Pack = require('./package');
 const sequelize = require('./database/connectDatabase');
 const TypeReactionRoute = require('./typeReactions');
 const ReactionRoute = require('./reactions');
+
+const KEYCLOAK_URL = `${process.env.KEYCLOAK_PROTOCOL}://${process.env.KEYCLOAK_DOMAIN}/auth/realms/${process.env.KEYCLOAK_REALM}`;
 
 const init = async () => {
   sequelize
@@ -35,22 +38,30 @@ const init = async () => {
     }
   };
 
+  const authPluginOptions = {};
+
+  const authStrategyOptions = {
+    realmUrl: KEYCLOAK_URL,
+    clientId: process.env.KEYCLOAK_CLIENT_ID,
+    secret: process.env.KEYCLOAK_CLIENT_SECRET,
+    userInfo: ['name', 'email']
+  };
+
   await server.register([
     Inert,
     Vision,
     {
       plugin: HapiSwagger,
       options: swaggerOptions
+    },
+    {
+      plugin: authKeycloak,
+      options: authPluginOptions
     }
   ]);
 
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler: () => {
-      return 'Hello World!';
-    }
-  });
+  server.auth.strategy('keycloak-jwt', 'keycloak-jwt', authStrategyOptions);
+  server.auth.default('keycloak-jwt');
 
   server.route(TypeReactionRoute);
 

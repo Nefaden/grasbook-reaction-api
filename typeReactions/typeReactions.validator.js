@@ -1,7 +1,7 @@
 const Joi = require('@hapi/joi');
 
 const typeReactionSchema = Joi.object({
-  iconBlob: Joi.binary().encoding('base64'),
+  iconBlob: Joi.string(),
   iconUrl: Joi.string()
     .uri({ scheme: ['http', 'https'] })
     .description("Type Reaction's icon url"),
