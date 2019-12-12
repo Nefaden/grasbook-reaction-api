@@ -1,15 +1,15 @@
 # Conception, developpement and integration of a Software Service
-[![build status](https://gitlab.com/projet-gras-book/api-reaction/badges/master/build.svg)]()
+[![build status](https://github.com/Nefaden/grasbook-reaction-api/badges/master/build.svg)]()
 [![VERSION](https://img.shields.io/static/v1?label=npm&message=1.0.0&color=blue)]()
 
 **Project Gras-Book**
 
 - Recreating a facebook-like app. Seperated in micro-services with a service for each part :
-    - Posts API (https://gitlab.com/projet-gras-book/post-api)
+    - Posts API (https://github.com/Singebob/grasbook-post-api)
     - Messaging API (https://gitlab.com/projet-gras-book/message-api)
-    - User API (https://gitlab.com/projet-gras-book/user-api)
+    - User API (https://github.com/EddyCheval/gras-book-user-api)
     - Reaction API (here)
-    - Gras-Book UI (https://gitlab.com/projet-gras-book/gras-book-ui)
+    - Gras-Book UI (https://github.com/SimonHuet/gras-book-front)
 
 **API Reaction** 
 
