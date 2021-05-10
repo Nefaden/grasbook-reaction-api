@@ -29,7 +29,7 @@
     "hapi-auth-keycloak": "^4.3.3",
     "hapi-swagger": "^10.2.0",
     "jest": "^24.9.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.1"
